@@ -1,0 +1,44 @@
+extern crate iron;
+extern crate bodyparser;
+
+use iron::prelude::*;
+use iron::status;
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+// curl -XPOST localhost:3000/hello --data '{"x":1,"y":2}'
+fn handler(req: &mut Request) -> IronResult<Response> {
+    println!("Received request to url {}", req.url);
+
+    let body = req.get::<bodyparser::Struct<Point>>();
+    match body {
+        Ok(Some(point)) => println!("Parsed point: '{:?}'", point),
+        Ok(None) => println!("Couldn't parse to point"),
+        Err(err) => println!("Error: {:?}", err)
+    }
+
+    Ok(Response::with((status::Ok, "Hello World!")))
+}
+
+fn main() {
+    Iron::new(handler).http("localhost:3000").unwrap();
+}
+
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn green_test() {
+        assert!(true);
+    }
+
+    #[test]
+    #[should_panic]
+    fn should_panic() {
+        assert!(false);
+    }
+}
