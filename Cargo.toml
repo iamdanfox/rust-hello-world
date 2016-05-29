@@ -7,3 +7,6 @@ authors = ["Dan Fox <iamdanfox@gmail.com>"]
 
 [dependencies.iron]
 version = "*"
+
+[dependencies.bodyparser]
+git = "https://github.com/iron/body-parser.git"
