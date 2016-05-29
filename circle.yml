@@ -6,7 +6,9 @@ dependencies:
   override:
     - eval `ssh-agent` && ssh-add /home/ubuntu/.ssh/id_circleci_github && cargo build -v
   cache_directories:
+    - "/home/ubuntu/.cargo/"
     - "target/debug/deps"
+
 test:
   override:
     - eval `ssh-agent` && ssh-add /home/ubuntu/.ssh/id_circleci_github && cargo test -v
