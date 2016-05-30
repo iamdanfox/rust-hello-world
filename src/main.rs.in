@@ -1,5 +1,7 @@
 #[macro_use]
 extern crate log;
+extern crate env_logger;
+
 extern crate iron;
 extern crate bodyparser;
 
@@ -27,7 +29,8 @@ fn handler(req: &mut Request) -> IronResult<Response> {
 }
 
 fn main() {
-    info!("Starting server on localhost:{}", 3000);
+    env_logger::init().unwrap();
+    log!("Starting server on localhost:3000");
     Iron::new(handler).http("localhost:3000").unwrap();
 }
 
