@@ -25,6 +25,8 @@ fn handler(req: &mut Request) -> IronResult<Response> {
 }
 
 fn main() {
+    env_logger::init().unwrap();
+    info!("Starting server on localhost:3000");
     Iron::new(handler).http("localhost:3000").unwrap();
 }
 

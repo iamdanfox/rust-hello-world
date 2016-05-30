@@ -1,1 +1,4 @@
 language: rust
+script:
+  - cargo build
+  - RUST_LOG=rust_hello_world=info cargo test --verbose
