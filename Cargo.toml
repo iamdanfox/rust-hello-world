@@ -11,6 +11,8 @@ syntex = "*"
 [dependencies]
 serde = "*"
 serde_json = "*"
+log = "*"
+env_logger = "*"
 
 [dependencies.iron]
 version = "*"
